@@ -6,7 +6,7 @@
 /*   By: yserhii <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/28 12:07:39 by yserhii           #+#    #+#             */
-/*   Updated: 2018/11/20 15:24:17 by yserhii          ###   ########.fr       */
+/*   Updated: 2018/11/23 12:54:29 by vrudyka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ int					ft_sqrt(int nb);
 int					ft_isspace(int ch);
 char				*ft_itoa_base(int n, int base);
 int					get_next_line(const int ft, char **line);
+void				ft_lstadd_end(t_list **alst, t_list *new);
 
 #endif
