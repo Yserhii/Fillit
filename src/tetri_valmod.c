@@ -42,24 +42,17 @@ int		ft_validate(char *buf)
 
 void	ft_attmpt(char *buf, char **content, int num)
 {
-	char	*point;
 	int		i;
-	int		j;
 	int		chr;
+	char	*point;
 
-	point = *content;
 	i = 0;
-	j = 0;
-	while (buf[j]) /*replace with chr*/
-	{
-		if (buf[j] == '#')
-			break;
-		j++;
-	}
+	chr = ft_strchr(buf, '#') - (char*)buf;
+	point = *content;
 	while (buf[i])
 	{
 		if (buf[i] == '#')
-			point[(i - j) + num] = buf[i];
+			point[(i - chr) + num] = buf[i];
 		i++;
 	}
 }
@@ -70,21 +63,22 @@ char	*ft_move(char *buf)
 	int		num;
 	int		i;
 
-	content = ft_strnew(20 + 1);
 	num = 0;
-	i = 0;
-	while (i < 21)
-	{
-		if ((i % 5) == 4)
-			content[i] = '\n';
-		else
-			content[i] = '.';
-			i++;
-	}
+	content = ft_strnew(20 + 1);
 	while (ft_validate(content) != 1)
 	{
+		i = 0;
+		while (i < 20)
+		{
+			if ((i % 5) == 4)
+				content[i] = '\n';
+			else
+				content[i] = '.';
+			i++;
+		}
 		ft_attmpt(buf, &content, num);
 		num++;
 	}
+	printf("%s\n", content);
 	return (content);
 }

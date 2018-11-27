@@ -13,7 +13,7 @@
 #ifndef FILLIT_H
 # define FILLIT_H
 
-# include "lslibft.h"
+# include <libft.h>
 # include <stdio.h>
 
 typedef struct	matrix
@@ -29,6 +29,7 @@ typedef struct	matrix
 }					d_list;
 
 int		ft_validate(char *buf);
-void	ft_modify(char **buf);
+void	ft_attmpt(char *buf, char **content, int num);
+char	*ft_move(char *buf);
 
 #endif

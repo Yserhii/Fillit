@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-void	ft_lstfill(t_list **lst, char *buf, char letter)
+void	ft_lstfill(t_list **lst, char *buf)
 {
 	char		*content;
 	t_list		*point;
@@ -20,7 +20,7 @@ void	ft_lstfill(t_list **lst, char *buf, char letter)
 
 	point = *lst;
 	i = 0;
-	content = ft_strdup(buf);
+	content = ft_move(buf);
 	point = ft_lstnew(content, 21);
 	if (*lst == NULL)
 		ft_lstadd(lst, point);
@@ -31,13 +31,11 @@ void	ft_lstfill(t_list **lst, char *buf, char letter)
 int		main(int argc, char **argv)
 {
 	t_list		*lst;
-	char		letter;
 	char		*buf;
 	int			count;
 	int			fd;
 
 	count = 0;
-	letter = 'A';
 	if (argc == 2)
 	{
 		buf = (char*)ft_memalloc(21 + 1);
@@ -45,11 +43,10 @@ int		main(int argc, char **argv)
 		while (read(fd, buf, 21) > 0 && fd > 0)
 		{
 			if (count < 26 && (ft_validate(buf)))
-				ft_lstfill(&lst, buf, letter);
+				ft_lstfill(&lst, buf);
 			else
 				break ;
 			count++;
-			letter++;
 		}
 		/*call function for MATRIX BUILD*/
 		/*call function for MATRIX SOLVE*/

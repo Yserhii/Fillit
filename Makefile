@@ -10,44 +10,79 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME =		fillit
+# name of the executable file
 
-SRC_DIR =	./src/
-OBJ_DIR =	./obj/
-INC_DIR =	./inc/
-LIB_DIR =	./lib/
+NAME :=				fillit
 
-SRC =		main.c ft_move.c tetri_valmod.c
+# project directories
 
-OBJ =		$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
+SRC_DIR :=			./src/
+OBJ_DIR :=			./obj/
+INC_DIR :=			./inc/
+LIB_DIR :=			./lib/
+
+ # project source files
+
+SRC :=			main.c tetri_valmod.c
+
+# project object files
+
+OBJ =				$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
+
+# libraries
+
+LIBFT =				$(LIBFT_DIR)libft.a
+LIBFT_DIR :=		$(LIB_DIR)libft/
+LIBFT_INC :=		$(LIBFT_DIR)includes/
+LIBFT_FLAGS :=		-lft -L $(LIBFT_DIR)
+
+# compilation flags
+
+CC_FLAGS :=			-Wall -Wextra -Werror
+
+# add linking flags for different libraries
+
+LINK_FLAGS :=		$(LIBFT_FLAGS)
+
+# header flags
+
+HEADER_FLAGS :=		-I $(INC_DIR) -I $(LIBFT_INC)
+
+# change compiler for different systems
+
+CC :=				gcс
+
+# rules
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-		cc $(OBJ) -o $(NAME)
+$(NAME): $(LIBFT) $(OBJ)
+		$(CC) $(OBJ) $(LINK_FLAGS) -o $(NAME)
+
+$(OBJ): | $(OBJ_DIR)
+
+$(OBJ_DIR):
+		mkdir $(OBJ_DIR)
 
 $(OBJ_DIR)%.o: %.c
-		cc -c $< -o $@ -I $(INC_DIR)
+		$(CC) -c $< -o $@ $(CC_FLAGS) $(HEADER_FLAGS)
+
+$(LIBFT):
+		make -C $(LIBFT_DIR)
 
 clean:
-		rm -f $(OBJ_FILES)
+		rm -f $(OBJ)
+		make clean -C $(LIBFT_DIR)
 
 fclean: clean
 		rm -f $(NAME)
-re: fclean all
-
-vpath %.c $(SRC_DIR)
-
-all:
-	@make -C /libft/ fclean && make -C /libft/
-	@clang -Wall -Wextra -Werror -I /libft/includes -o main.o -c main.c
-	@clang -o fillit main.o -I /libft/includes -L /libft/ -lft
-	@make -C /libft/ fclean
-
-clean:
-		@rm -f *.o
-
-fclean: clean
-		@rm -f $(NAME)
+		rm -rf $(OBJ_DIR)
+		make fclean -C $(LIB_DIR)
 
 re: fclean all
+
+# special stuff
+
+vpath %.c $(SRC_DIR):
+
+.PHONY: all clean fclean re
