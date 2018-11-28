@@ -23,7 +23,7 @@ LIB_DIR :=			./lib/
 
  # project source files
 
-SRC :=			main.c tetri_valmod.c
+SRC =				main.c tetri_validate_modify.c tetri_matrix_build.c
 
 # project object files
 
@@ -46,11 +46,11 @@ LINK_FLAGS :=		$(LIBFT_FLAGS)
 
 # header flags
 
-HEADER_FLAGS :=		-I $(INC_DIR) -I $(LIBFT_INC)
+HEADER_FLAGS :=		-I $(INC_DIR)  -I $(LIBFT_INC)
 
 # change compiler for different systems
 
-CC :=				gcс
+CC :=				gcc
 
 # rules
 
@@ -62,7 +62,7 @@ $(NAME): $(LIBFT) $(OBJ)
 $(OBJ): | $(OBJ_DIR)
 
 $(OBJ_DIR):
-		mkdir $(OBJ_DIR)
+	mkdir $(OBJ_DIR)
 
 $(OBJ_DIR)%.o: %.c
 		$(CC) -c $< -o $@ $(CC_FLAGS) $(HEADER_FLAGS)
@@ -77,12 +77,10 @@ clean:
 fclean: clean
 		rm -f $(NAME)
 		rm -rf $(OBJ_DIR)
-		make fclean -C $(LIB_DIR)
+		make fclean -C $(LIBFT_DIR)
 
 re: fclean all
 
-# special stuff
-
-vpath %.c $(SRC_DIR):
+vpath %.c $(SRC_DIR)
 
 .PHONY: all clean fclean re

@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tetri_valmod.c                                     :+:      :+:    :+:   */
+/*   tetri_validate_modify.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vrudyka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/26 12:28:15 by vrudyka           #+#    #+#             */
-/*   Updated: 2018/11/26 12:28:17 by vrudyka          ###   ########.fr       */
+/*   Created: 2018/11/28 12:55:04 by vrudyka           #+#    #+#             */
+/*   Updated: 2018/11/28 12:55:05 by vrudyka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_validate(char *buf)
+int			ft_validate(char *buf)
 {
-	int			near;
-	int			dot;
-	int			i;
+	int		near;
+	int		dot;
+	int		i;
 
 	near = 0;
 	dot = 0;
@@ -40,7 +40,7 @@ int		ft_validate(char *buf)
 	return (((near == 6 || near == 8) && dot == 12) ? 1 : 0);
 }
 
-void	ft_attmpt(char *buf, char **content, int num)
+void		ft_attempt(char *buf, char **content, int num)
 {
 	int		i;
 	int		chr;
@@ -57,7 +57,7 @@ void	ft_attmpt(char *buf, char **content, int num)
 	}
 }
 
-char	*ft_move(char *buf)
+char		*ft_move(char *buf)
 {
 	char	*content;
 	int		num;
@@ -79,6 +79,5 @@ char	*ft_move(char *buf)
 		ft_attmpt(buf, &content, num);
 		num++;
 	}
-	printf("%s\n", content);
 	return (content);
 }

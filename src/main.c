@@ -12,25 +12,10 @@
 
 #include "fillit.h"
 
-void	ft_lstfill(t_list **lst, char *buf)
-{
-	char		*content;
-	t_list		*point;
-	int			i;
-
-	point = *lst;
-	i = 0;
-	content = ft_move(buf);
-	point = ft_lstnew(content, 21);
-	if (*lst == NULL)
-		ft_lstadd(lst, point);
-	else
-		ft_lstadd_end(lst, point);
-}
-
 int		main(int argc, char **argv)
 {
 	t_list		*lst;
+	t_matrix	*matrix;
 	char		*buf;
 	int			count;
 	int			fd;
@@ -48,6 +33,7 @@ int		main(int argc, char **argv)
 				break ;
 			count++;
 		}
+		ft_matrix_fill(&matrix, lst, count);
 		/*call function for MATRIX BUILD*/
 		/*call function for MATRIX SOLVE*/
 	}
@@ -57,10 +43,9 @@ int		main(int argc, char **argv)
 
 /*
 
-a) function to move to the left top corner
+a) function to move to the left top corner √
 
-b) function to take tetri from LIST_1
-put into MATRIX
+b) function to take tetri from LIST_1 put into MATRIX
 
-c) function to work the dancing links
+d) function to work the dancing links
 */
