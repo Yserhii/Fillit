@@ -6,7 +6,7 @@
 #    By: yserhii <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/14 14:39:51 by yserhii           #+#    #+#              #
-#    Updated: 2018/11/20 15:50:59 by yserhii          ###   ########.fr        #
+#    Updated: 2018/12/10 18:17:40 by yserhii          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,14 +16,15 @@ NAME :=				fillit
 
 # project directories
 
-SRC_DIR :=			./src/
-OBJ_DIR :=			./obj/
-INC_DIR :=			./inc/
-LIB_DIR :=			./lib/
+SRC_DIR :=			./fillit_one/src/
+OBJ_DIR :=			./fillit_one/obj/
+INC_DIR :=			./fillit_one/inc/
 
  # project source files
 
-SRC =				main.c tetri_validate_modify.c tetri_matrix_build.c
+SRC =				main.c lst_fill.c matrix_build.c matrix_node_fill.c\
+					matrix_all_var.c matrix_solve.c cover_uncover.c\
+					free.c display.c\
 
 # project object files
 
@@ -32,7 +33,7 @@ OBJ =				$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 # libraries
 
 LIBFT =				$(LIBFT_DIR)libft.a
-LIBFT_DIR :=		$(LIB_DIR)libft/
+LIBFT_DIR :=		libft/
 LIBFT_INC :=		$(LIBFT_DIR)includes/
 LIBFT_FLAGS :=		-lft -L $(LIBFT_DIR)
 

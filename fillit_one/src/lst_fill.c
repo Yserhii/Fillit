@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tetri_validate_modify.c                            :+:      :+:    :+:   */
+/*   lst_fill.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vrudyka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/28 12:55:04 by vrudyka           #+#    #+#             */
-/*   Updated: 2018/11/28 12:55:05 by vrudyka          ###   ########.fr       */
+/*   Created: 2018/12/09 20:17:49 by vrudyka           #+#    #+#             */
+/*   Updated: 2018/12/10 18:19:22 by yserhii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			ft_validate(char *buf)
+int				ft_validate(char *buf)
 {
-	int		near;
-	int		dot;
-	int		i;
+	int			near;
+	int			dot;
+	int			i;
 
 	near = 0;
 	dot = 0;
@@ -40,11 +40,11 @@ int			ft_validate(char *buf)
 	return (((near == 6 || near == 8) && dot == 12) ? 1 : 0);
 }
 
-void		ft_attempt(char *buf, char **content, int num)
+static void		ft_attempt(char *buf, char **content, int num)
 {
-	int		i;
-	int		chr;
-	char	*point;
+	int			i;
+	int			chr;
+	char		*point;
 
 	i = 0;
 	chr = ft_strchr(buf, '#') - (char*)buf;
@@ -57,11 +57,11 @@ void		ft_attempt(char *buf, char **content, int num)
 	}
 }
 
-char		*ft_move(char *buf)
+static char		*ft_move(char *buf)
 {
-	char	*content;
-	int		num;
-	int		i;
+	char		*content;
+	int			num;
+	int			i;
 
 	num = 0;
 	content = ft_strnew(20 + 1);
@@ -76,8 +76,23 @@ char		*ft_move(char *buf)
 				content[i] = '.';
 			i++;
 		}
-		ft_attmpt(buf, &content, num);
+		ft_attempt(buf, &content, num);
 		num++;
 	}
 	return (content);
+}
+
+void			ft_lstfill(t_list **lst, char *buf)
+{
+	char		*tmp;
+	t_list		*point;
+
+	tmp = ft_move(buf);
+	point = *lst;
+	point = ft_lstnew(tmp, 21);
+	if (*lst == NULL)
+		ft_lstadd(lst, point);
+	else
+		ft_lstadd_end(lst, point);
+	free(tmp);
 }

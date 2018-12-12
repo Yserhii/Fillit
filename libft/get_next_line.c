@@ -47,7 +47,7 @@ t_list	*ft_lstcheck(int fd, t_list **point)
 			return (tmp);
 		tmp = tmp->next;
 	}
-	tmp = ft_lstnew("\0", 2);
+	tmp = ft_lstnew("\0", fd);
 	tmp->content_size = fd;
 	ft_lstadd(point, tmp);
 	return (tmp);

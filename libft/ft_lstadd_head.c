@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yserhii <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/29 12:47:12 by yserhii           #+#    #+#             */
-/*   Updated: 2018/11/01 13:33:09 by yserhii          ###   ########.fr       */
+/*   Created: 2018/11/07 11:32:58 by yserhii           #+#    #+#             */
+/*   Updated: 2018/11/26 13:03:50 by vrudyka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+void	ft_lstadd(t_list **alst, t_list *new)
 {
-	size_t	i;
-
-	i = 0;
-	while (n > i)
-	{
-		if (((unsigned char*)src)[i] == ((unsigned char)c))
-		{
-			i++;
-			ft_memcpy(dst, src, i);
-			return (&dst[i]);
-		}
-		i++;
-	}
-	ft_memcpy(dst, src, i);
-	return (NULL);
+	if (alst == NULL || new == NULL)
+		return ;
+	new->next = *alst;
+	*alst = new;
 }
