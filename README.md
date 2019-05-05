@@ -1,6 +1,6 @@
 # fillit
 
-A group project with Serhii Yolankyi.
+👾A group project with Serhii Yolankyi.
 Program that assembles given Tetrimino set:
 
 ```bash
