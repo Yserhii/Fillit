@@ -12,6 +12,31 @@
 
 #include "fillit.h"
 
+char	*color(char c)
+{
+	int			n;
+
+	n = (c - 'A') % 7;
+	switch (n)
+	{
+		case 1:
+			return (KNRM);
+		case 2:
+			return (KRED);
+		case 3:
+			return (KGRN);
+		case 4:
+			return (KYEL);
+		case 5:
+			return (KBLU);
+		case 6:
+			return (KMAG);
+		case 7:
+			return (KCYN);
+	}
+	return (KCYN);
+}
+
 void	ft_putstrn(char *str, int sidelen)
 {
 	int			i;
@@ -19,9 +44,12 @@ void	ft_putstrn(char *str, int sidelen)
 	i = -1;
 	while (str[++i])
 	{
-		write(1, &str[i], 1);
+		if (str[i] == '.')
+			printf("%s%c", KWHT, str[i]);
+		else
+			printf("%s%c", color(str[i]), str[i]);
 		if (i % sidelen == (sidelen - 1))
-			write(1, "\n", 1);
+			printf("%s\n", KWHT);
 	}
 	free(str);
 }
