@@ -1,6 +1,6 @@
 # fillit
 
-Program that assembles given Tetrimino set altogether in the smallest possible square.
+Program that assembles given Tetrimino set:
 
 ```bash
 ...#  ....  .###  ....
@@ -13,6 +13,8 @@ Program that assembles given Tetrimino set altogether in the smallest possible s
 .##.  ##..  .#..  .#..
 ....  .##.  ....  ....
 ```
+
+Altogether in the smallest possible square using Knuth's Algorithm X.
 
 To launch:
 1. make
