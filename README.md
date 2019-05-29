@@ -15,7 +15,7 @@ Program that assembles given Tetrimino set:
 ....  .##.  ....  ....
 ```
 
-Altogether in the smallest possible square using Knuth's Algorithm X.
+Altogether in the smallest possible square using <b>Knuth's Algorithm X<b/>.
 
 ![speed](https://github.com/vrudyka/fillit/blob/master/screenshot.png)
 
