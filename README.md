@@ -1,6 +1,12 @@
-# fillit
+# Fillit
 
-A group project with Serhii Yolankyi.
+
+## How to start:
+```bash
+git clone https://github.com/Yserhii/Fillit.git && cd Fillit && make
+```
+
+A group project with vrudyka.
 Program that assembles given Tetrimino set:
 
 ```bash
